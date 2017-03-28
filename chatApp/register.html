@@ -1,0 +1,42 @@
+<form id="register">
+    <div layout="column" layout-align="center center" class="" layout-fill>
+        <div class="loginBox md-whiteframe-z1 login_box md-raised" layout="column">
+            <md-toolbar>
+                <md-content class="md-padding subparent_div" layout="column">
+                    <input type="file" id="upload_btn" onchange="uploadedChanged()" ng-model="uploadedImg" style="visibility:hidden;"/>
+                    <div class="img-thumbnail img-circle"ng-click="triggerTypeFile();">
+                        <div style="position: relative; padding: 0; cursor: pointer;">
+                            <img class="img-circle" src="images/upload_img.png" style="width: 128px; height: 128px;" >
+                                                      
+                        </div>
+                    </div>
+                    <md-input-container class="required_field">
+                        <label> First name </label>
+                        <input type="text" id="fname" ng-model="fname" class="required" /> 
+                        <div class="errorMsg"> </div>
+                    </md-input-container>
+                    
+                    <md-input-container class="required_field">
+                        <label> Last name </label>
+                        <input type="text" id="lname" ng-model="lname" class="required" /> 
+                        <div class="errorMsg"> </div>
+                    </md-input-container>
+                    
+                    <md-input-container class="required_field">
+                        <label> Username </label>
+                        <input type="text" id="uname" ng-model="uname" class="required" />
+                        <div class="errorMsg"> </div>
+                    </md-input-container>
+                    
+                    <div layout="row" layout-align="center center" style="padding-top:20px;" ng-click="register()">
+                        <md-button class="md-raised md-primary"><i class="fa fa-sign-in" aria-hidden="true"></i> Save </md-button> 
+                    </div>
+
+                    <div flex layout="row" layout-align="end center">
+                         <a href="#/">Already Registered ?</a>
+                    </div>
+                </md-content>
+            </md-toolbar>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,26 @@
+  
+<form id="login">
+    <div layout="column" layout-align="center center" class="md-raised" layout-fill>
+        <div class="loginBox md-whiteframe-z1 login_box" layout="column">
+            <md-toolbar>
+                <!--<h2 class="md-toolbar-tools"> Login </h2>-->
+                <md-content class="md-padding subparent_div" layout="column">
+                    <md-input-container class="required_field">
+                        <label> Username </label>
+                        <input type="text" id="login_uname" ng-model="uname" class="required"/>
+                        <div class="errorMsg"> </div>
+                    </md-input-container>
+
+                    <div layout="row" layout-align="center center" style="padding-top:20px;" ng-click="signIn()">
+                        <md-button class="md-raised md-primary"><i class="fa fa-sign-in" aria-hidden="true"></i> Login </md-button> 
+                    </div>
+
+                    <div flex layout="row" layout-align="end center">
+                         <a href="#/register">Sign Up</a>
+                    </div>
+                </md-content>
+            </md-toolbar>
+        </div>
+    </div>
+</form>
+  

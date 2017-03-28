@@ -1,0 +1,122 @@
+<!--<div>
+ <p>Nome : <input type="text" ng-model="newmessage.user"></p>
+ <p>Messaggio :<input type="text" ng-model="newmessage.text"></p>
+ <button ng-click="inserisci(newmessage)">Invia</button>
+ 
+  	<ul >
+  		<li ng-repeat="message in messages">
+  			{{message.user}} dice :{{message.text}}
+  		</li>
+  	</ul>
+</div>-->
+
+
+<div layout="row" id="desktop_div" ng-if="mobile=='false'">
+    <md-sidenav layout="column" class="sidenav1" md-is-locked-open='true' style="scroll-y:auto;border-right:1px solid rgb(40,53,147);">
+        <div>
+            <md-list>
+                <md-list-item class="left" ng-repeat="message in messages track by $index" ng-show='message.user!=loggedUser'>
+                    <img src="images/user-icon.png" />                   
+                    <label class="md-body-2" style="margin-left:10px;font-weight:800;">{{message.user}}</label>
+                </md-list-item>
+            </md-list>
+        </div>
+       
+   </md-sidenav>
+
+  <md-content flex layout="column" style="border-left:1px solid rgb(40,53,147);">
+      <md-content flex layout="row" style="scroll-y:auto;border-bottom:1px solid rgb(40,53,147);">
+            <div id="displayMsg_desktop">
+                <md-list>
+                    <md-list-item class="right" ng-repeat="message in messages">
+                        <div ng-if="message.user!=loggedUser" style="text-align:left;width:100%;margin-top:5px;margin-bottom:5px;">
+                            <div class="left_msg bubble-left">
+                                <h3 style="margin-bottom:0px;">{{message.user}}</h3>
+                                 <div class="md-list-item-text" style="margin-bottom:0px;text-align:left;">
+                                        <div>{{message.text}}</div>
+                                </div>
+                            </div>                       
+                        </div>
+                        <div ng-if="message.user==loggedUser" style="text-align:right;width:100%;margin-top:5px;margin-bottom:5px;">
+                            <div class="right_msg bubble-right">
+                                <h3 style="margin-bottom:0px;text-align:left;">You</h3>
+                                 <div class="md-list-item-text" style="margin-bottom:0px;text-align:left;">
+                                        <div>{{message.text}}</div>
+                                </div>
+                            </div>                       
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </div>
+      </md-content>
+        <div id="typeMsg" style="height:50px;border-top:1px solid #e0e0e0;">
+            <md-content flex layout="row" style="overflow:hidden;height:50px;">
+                <md-content flex="95" layout="column" style="overflow:hidden;height:50px;">
+                    <md-input-container md-no-float style="margin-top:0px;height:50px;margin-bottom:0px;">
+                        <input type="text" id="input_desktop" placeholder="Type a message" ng-model="text" style="padding:0px 10px 0px 10px;height:50px;">
+                    </md-input-container>
+                </md-content>
+                <md-content flex="5" layout="column" style="overflow:hidden;cursor:pointer;height:50px;" layout-align="center center">
+                    <div ng-click="inserisci(text)">
+                        <i class="fa fa-comments" aria-hidden="true"></i>
+                    </div>
+                </md-content>
+            </md-content> 
+        </div>       
+  </md-content>
+</div>
+
+<div layout="row" ng-if="mobile=='true'">
+    <div id="swipeleft">      
+        <div>
+            <md-list>
+                <md-list-item class="left" ng-repeat="message in messages track by $index" ng-show='message.user!=loggedUser'>
+                    <img src="images/user-icon.png" />                   
+                    <label style="margin-left:10px;">{{message.user}}</label>
+                </md-list-item>
+            </md-list>
+        </div>
+        <div id="right_icon" ng-click="onSwipe('swipeleft','swiperight')"> <img src="images/right_icon.png" /> </div>
+    </div>       
+    <div id="swiperight">
+        <div id="left_icon" ng-click="onSwipe('swiperight','swipeleft')"> <img src="images/left_icon.png" /> </div>
+        <div id="displayMsg">
+            <md-list>
+                <md-list-item class="right" ng-repeat="message in messages">
+                    <div ng-if="message.user!=loggedUser" style="text-align:left;width:100%;margin-top:5px;margin-bottom:5px;">
+                        <div class="left_msg bubble-left">
+                            <h3 style="margin-bottom:0px;">{{message.user}}</h3>
+                             <div class="md-list-item-text" style="margin-bottom:0px;text-align:left;">
+                                    <div>{{message.text}}</div>
+                            </div>
+                        </div>                       
+                    </div>
+                    <div ng-if="message.user==loggedUser" style="text-align:right;width:100%;margin-top:5px;margin-bottom:5px;">
+                        <div class="right_msg bubble-right">
+                            <h3 style="margin-bottom:0px;text-align:left;">You</h3>
+                             <div class="md-list-item-text" style="margin-bottom:0px;text-align:left;">
+                                    <div>{{message.text}}</div>
+                            </div>
+                        </div>                       
+                    </div>
+                </md-list-item>
+            </md-list>
+        </div>
+        <div id="typeMsg" style="height:50px;border-top:1px solid #e0e0e0;">
+            <md-content flex layout="row" style="overflow:hidden;height:50px;">
+                <md-content flex="95" layout="column" style="overflow:hidden;height:50px;">
+                    <md-input-container md-no-float style="margin-top:0px;height:50px;margin-bottom:0px;">
+                        <input type="text" id="input_mob" placeholder="Type a message" ng-model="text" style="padding:0px 10px 0px 10px;height:50px;">
+                    </md-input-container>
+                </md-content>
+                <md-content flex="5" layout="column" style="overflow:hidden;cursor:pointer;height:50px;" layout-align="center center">
+                    <div ng-click="inserisci(text)">
+                        <i class="fa fa-comments" aria-hidden="true"></i>
+                    </div>
+                </md-content>
+            </md-content> 
+        </div>
+    </div>          
+</div>
+
+
